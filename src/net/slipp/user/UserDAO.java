@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class UserDAO {
 
 	public Connection getConnection() {
-		String url = "jdbc:mysql://localhost:3306/slipp_dev";
+		String url = "jdbc:mysql://localhost:3306/slipp_dev?useUnicode=true&characterEncoding=utf8";
 		String id = "slipp";
 		String pw = "password"; 
 		
