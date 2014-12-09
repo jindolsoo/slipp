@@ -2,7 +2,6 @@ package net.slipp.user;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -22,16 +21,13 @@ import org.slf4j.LoggerFactory;
 
 @WebServlet("/users/create")
 public class CreateUserServlet extends HttpServlet {
-	private static final Logger logger = LoggerFactory
-			.getLogger(CreateUserServlet.class);
+	private static final Logger logger = LoggerFactory.getLogger(CreateUserServlet.class);
 
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = new User();
 		try {
-			BeanUtilsBean.getInstance().populate(user,
-					request.getParameterMap());
+			BeanUtilsBean.getInstance().populate(user, request.getParameterMap());
 		} catch (IllegalAccessException | InvocationTargetException e1) {
 			throw new ServletException(e1);
 		}
@@ -39,28 +35,21 @@ public class CreateUserServlet extends HttpServlet {
 		logger.debug("User : {}", user);
 
 		Validator validator = MyValidatorFactory.createValidator();
-		Set<ConstraintViolation<User>> constraintViolations = validator
-				.validate(user);
+		Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
 		if (constraintViolations.size() > 0) {
 			request.setAttribute("user", user);
-			String errorMessage = constraintViolations.iterator().next()
-					.getMessage();
+			String errorMessage = constraintViolations.iterator().next().getMessage();
 			forwardJSP(request, response, errorMessage);
 			return;
 		}
 
 		UserDAO userDAO = new UserDAO();
-		try {
-			userDAO.addUser(user);
-		} catch (SQLException e) {
-		}
+		userDAO.addUser(user);
 
 		response.sendRedirect("/");
 	}
 
-	private void forwardJSP(HttpServletRequest request,
-			HttpServletResponse response, String errorMessage)
-			throws ServletException, IOException {
+	private void forwardJSP(HttpServletRequest request, HttpServletResponse response, String errorMessage) throws ServletException, IOException {
 		request.setAttribute("errorMessage", errorMessage);
 		RequestDispatcher rd = request.getRequestDispatcher("/form.jsp");
 		rd.forward(request, response);
