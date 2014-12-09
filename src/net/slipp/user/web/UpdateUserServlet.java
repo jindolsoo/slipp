@@ -1,4 +1,4 @@
-package net.slipp.user;
+package net.slipp.user.web;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -14,9 +14,13 @@ import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
-import net.slipp.support.MyValidatorFactory;
+import net.slipp.user.User;
+import net.slipp.user.UserDAO;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
+
+import core.MyValidatorFactory;
+import core.SessionUtils;
 
 @WebServlet("/users/update")
 public class UpdateUserServlet extends HttpServlet {

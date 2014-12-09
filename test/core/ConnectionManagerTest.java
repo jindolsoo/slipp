@@ -1,12 +1,12 @@
-package net.slipp.support;
+package core;
 
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.Connection;
 
-import net.slipp.support.jdbc.ConnectionManager;
-
 import org.junit.Test;
+
+import core.jdbc.ConnectionManager;
 
 public class ConnectionManagerTest {
 	@Test

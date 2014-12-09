@@ -1,4 +1,4 @@
-package net.slipp.user;
+package net.slipp.user.web;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -13,11 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
-import net.slipp.support.MyValidatorFactory;
+import net.slipp.user.User;
+import net.slipp.user.UserDAO;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import core.MyValidatorFactory;
 
 @WebServlet("/users/create")
 public class CreateUserServlet extends HttpServlet {
