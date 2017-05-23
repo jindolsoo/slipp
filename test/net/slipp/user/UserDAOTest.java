@@ -35,6 +35,9 @@ public class UserDAOTest {
 		assertEquals(updateUser, dbUser);
 		
 		System.out.println("commit Test!!!!");
+		
+		System.out.println("branch Test!!!!");
+		
 	}
 	
 	@Test
