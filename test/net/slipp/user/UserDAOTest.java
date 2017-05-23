@@ -33,10 +33,12 @@ public class UserDAOTest {
 		userDao.updateUser(updateUser);
 		dbUser = userDao.findByUserId(updateUser.getUserId());
 		assertEquals(updateUser, dbUser);
+		
+		System.out.println("commit Test!!!!");
 	}
 	
 	@Test
-	public void 존재하지_않는_사용자_조회() throws Exception {
+	public void 議댁옱�븯吏�_�븡�뒗_�궗�슜�옄_議고쉶() throws Exception {
 		User user = UserTest.TEST_USER;
 		userDao.removeUser(user.getUserId());
 		User dbUser = userDao.findByUserId(user.getUserId());
